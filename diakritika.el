@@ -51,6 +51,7 @@
               (replace-match w)))
           (forward-word))))))
 
+;;;###autoload
 (defun diakritika-fix-region (beg end)
   (interactive "r")
   (let ((input (buffer-substring-no-properties beg end)))
