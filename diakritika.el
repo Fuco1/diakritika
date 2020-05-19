@@ -53,7 +53,10 @@
 
 ;;;###autoload
 (defun diakritika-fix-region (beg end)
-  (interactive "r")
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (-let (((beg . end) (bounds-of-thing-at-point 'word)))
+                   (list beg end))))
   (let ((input (buffer-substring-no-properties beg end)))
     (request
      "https://diakritika.brm.sk/site/words"
